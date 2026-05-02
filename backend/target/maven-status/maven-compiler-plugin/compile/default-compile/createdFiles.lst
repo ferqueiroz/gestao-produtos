@@ -1,0 +1,7 @@
+com\produtos\repository\ProdutoRepository.class
+com\produtos\service\ProdutoService.class
+com\produtos\entity\Produto.class
+com\produtos\dto\ProdutoDTO.class
+com\produtos\exception\GlobalExceptionHandler.class
+com\produtos\ProdutosApplication.class
+com\produtos\controller\ProdutoController.class
