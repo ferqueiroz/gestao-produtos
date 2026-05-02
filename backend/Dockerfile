@@ -1,16 +1,19 @@
-FROM ubuntu:latest AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-26-jdk -y
-COPY . .
+WORKDIR /app
 
-RUN apt-get install maven -y
-RUN mvn clean install
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-FROM openjdk:26-jdk-slim
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21-jdk-jammy
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
-COPY --from=build /target/produtos-api-1.0.0.jar app.jar
-
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT ["java", "-jar", "app.jar"]
