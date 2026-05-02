@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 
-const API_URL = "${API_URL_PRODUTOS}";
+const API_URL = import.meta.env.VITE_API_URL_PRODUTOS;
 
 const formatarPreco = (preco) =>
   new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(preco);
