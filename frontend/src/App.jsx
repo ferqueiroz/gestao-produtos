@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 
-const API_URL = "https://gestao-produtos-c66f.onrender.com/api/produtos";
+const API_URL = "${API_URL}";
 
 const formatarPreco = (preco) =>
   new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(preco);
